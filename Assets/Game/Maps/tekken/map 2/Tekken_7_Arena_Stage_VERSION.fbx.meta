@@ -1,0 +1,569 @@
+fileFormatVersion: 2
+guid: f2fe1ea0f2d827649b9461deceef5c73
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dummy_Black
+    second: {fileID: 2100000, guid: f9c18972ddbe5854bac9eaac08a12318, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ring Floor Sticker 2
+    second: {fileID: 2100000, guid: 4bb902b2867b5a048bfa8710afaf2f57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s10BorderA3
+    second: {fileID: 2100000, guid: bf72f654140a62e4a8953a289863ec09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11AdRingBig_B
+    second: {fileID: 2100000, guid: 6167282ed2d4f854c89a65e76c1bac20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11BunnerBN
+    second: {fileID: 2100000, guid: 8b39969f10de11a4784af10f8f2a3409, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11IntoreMetal.008
+    second: {fileID: 2100000, guid: db18772088e45264e83f5858ea90ea02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11PosterColumnMetal.005
+    second: {fileID: 2100000, guid: 36b4264b8c724264cb1e80544e762726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11SignsEmissiveStrong.007
+    second: {fileID: 2100000, guid: cc98819dd25047244a68ecf30991b15b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11SignsEmissiveStrong.011
+    second: {fileID: 2100000, guid: 7394a131037116843a6410bd3456cf4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T7_MI_ENV_s11UraIntore
+    second: {fileID: 2100000, guid: 4337ff282a9a9254bbea87a50e581770, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tekken Skydome Texture
+    second: {fileID: 2100000, guid: a1212c871c5669e4eaafb2e2f00c2b55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_GodRay_Mask02.png
+    second: {fileID: 2100000, guid: b6d0b959ed53dba4da95ef15eac93876, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_STG008askyline
+    second: {fileID: 2100000, guid: e4cde683ed2f6aa438364eb5b34c7a54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_STG008askyline.001
+    second: {fileID: 2100000, guid: f7dff1f5e1d4ff8448f305f0f4c33045, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11AdMachine_D.png
+    second: {fileID: 2100000, guid: eaaddd7ba0eaf6d45a699cb812e7d6f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_ColumnTri_A_D.png
+    second: {fileID: 2100000, guid: 7e795e1786c8fc9439f3b1a3bb6940c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_ColumnTri_B_D.png
+    second: {fileID: 2100000, guid: 757beefb1fe84c54cb3abebe634909d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_ColumnTri_C_D.png
+    second: {fileID: 2100000, guid: 6d0b703ea8df1e64a86fe834212edc2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_RingBig_A_D.png
+    second: {fileID: 2100000, guid: b115e3c0ce624ce4487aa36a3b02c4a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_RingBig_C_D.png
+    second: {fileID: 2100000, guid: dec0afa4da379444e9d60c961c9cb045, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_RingSide_A_D.png
+    second: {fileID: 2100000, guid: 34f9ba62b70513241a5feab9c26eb8c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_Ringfloor_A_D.png
+    second: {fileID: 2100000, guid: aea647fdd2aa7924f836e161179bf31b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_Ringfloor_B_D.png
+    second: {fileID: 2100000, guid: 077971388cac732438a61d4b9f9c2b9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_Ringfloor_C_D.png
+    second: {fileID: 2100000, guid: 67d115fe87410e242aaac5625b357e5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_Ringfloor_D_D.png
+    second: {fileID: 2100000, guid: f098ea79192285a49a70097aacb2e7e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoardDisp_A_D.png
+    second: {fileID: 2100000, guid: ad02c7e2ca7dbe64b8d863b02e594c73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoardDisp_A_D.png.001
+    second: {fileID: 2100000, guid: 0efe1bcea8109b7498cff8188d896023, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoardSq_A_D.png
+    second: {fileID: 2100000, guid: 964f3cc59af141f47935108760b8ec64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoard_A_D.png
+    second: {fileID: 2100000, guid: 00aaca64d19616347ad0fe7a7a00bad9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoard_B_D.png
+    second: {fileID: 2100000, guid: 88203e82afa9d0544a86c83565308093, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoard_B_D.png.001
+    second: {fileID: 2100000, guid: d9bbc61e74b808c4fafdea23b30e8b68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoard_C_D.png
+    second: {fileID: 2100000, guid: 465fec08ad8f73f41b2b9482e8e4b3b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_SignBoard_D_D.png
+    second: {fileID: 2100000, guid: d704ded4f90802b41bce141271078cd5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_WallOb_A_D.png
+    second: {fileID: 2100000, guid: 6b5b6c1e2881fd142a8a95b632acffd5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_WallOb_B_D.png
+    second: {fileID: 2100000, guid: 603a3f6372e61474f8e1b98f63c37b7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_WallSq_A_D.png
+    second: {fileID: 2100000, guid: de62da00b24582749aed806b44118cfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11Ad_WallSq_B_D.png
+    second: {fileID: 2100000, guid: 2ef8d94bb77225d458aab94602d951e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11AudienceSeatsConcrete_D.png
+    second: {fileID: 2100000, guid: 3e75b5915b01371408a64bbdc209deac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11AudienceSeatsPlastic_D
+    second: {fileID: 2100000, guid: 65426be8f6c21c843b8f7f408ba7cde1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11CraneCamera_D.png
+    second: {fileID: 2100000, guid: a553ea359c1567d46a6469f1a2eacf13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11DispPillar_D.png
+    second: {fileID: 2100000, guid: 2be05178dc374b8498a01c2bbf80611c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11DispRingFloor_D.png
+    second: {fileID: 2100000, guid: 0862ba73afcf6904881400ec20d510f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11DomeCeilling_L
+    second: {fileID: 2100000, guid: e643af11a21bc6147ab53aca600d72ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11FloorLight_M
+    second: {fileID: 2100000, guid: 53abf40408bd6304fb442ce85e4f7eea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11IntoreWhiteMetal_L
+    second: {fileID: 2100000, guid: a32bd38b41275f24880e106d01ad61e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11LightColor_D
+    second: {fileID: 2100000, guid: 048c5dfdf97c30a44ad252bd68b1b270, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11LogoBnamco_D.png.001
+    second: {fileID: 2100000, guid: 1e8e7e9c78de18f41b75b589d56e5511, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11MainLogoNew_M.png
+    second: {fileID: 2100000, guid: b43d961178e2fc84dba6d03e5ee8baca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11PosterColumnTriMetal_D.png
+    second: {fileID: 2100000, guid: 6a4f64e095c434c489c1d21b94c78f4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11PosterColumnTriMetal_D.png.001
+    second: {fileID: 2100000, guid: ecc8d1eca7a4304488de42dae40729b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11PosterColumnTriMetal_R.png
+    second: {fileID: 2100000, guid: 824a77ab4c5b77941894fd36229c9564, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11RingBaseGlass_D.png
+    second: {fileID: 2100000, guid: 0d95b8ba26d6c1240b197fadc631cf19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11RingFloor_Ver02_D.png
+    second: {fileID: 2100000, guid: 327bed07e41d1d14a9a28865ef7a4fe2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11RingFloor_Ver02_D.png.001
+    second: {fileID: 2100000, guid: 4de3d4a7019ab18459e05be95cead498, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11RingWall_D.png
+    second: {fileID: 2100000, guid: d2c24952121f4854a96e90baf6d1afbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11SpectatorStandFrame_D.png
+    second: {fileID: 2100000, guid: 5a532accd84918b46a10d6424198819e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11StageSetRed_D
+    second: {fileID: 2100000, guid: 71f09bdd2ce6eb04483438f3d1528694, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s11_KobushiObj_D.png
+    second: {fileID: 2100000, guid: 2dc5288548bc78540a03459d1cb2a4cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s3truck_D.png
+    second: {fileID: 2100000, guid: 55a57d3428121f04ebf013f084ac2fb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane08_D_7
+    second: {fileID: 2100000, guid: 8b890e44269df444a97aac705784fd4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane09_D_3
+    second: {fileID: 2100000, guid: 2302bbc58dce45c48a9d2b4ed8a31054, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane10_D_8
+    second: {fileID: 2100000, guid: e8a2ced00b726b642830a4953359c5ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane11_D_4
+    second: {fileID: 2100000, guid: 42dd84b47d27c1241b852b0f6889045c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane13_D_6
+    second: {fileID: 2100000, guid: 8a4370c6ccb45f349a2d8694c6d35370, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane14_D_5
+    second: {fileID: 2100000, guid: 0cd79d1f8ae5a8c4cb22d04b02ba96d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane15_D_9
+    second: {fileID: 2100000, guid: 2386317851ac70042a0f92cdea914c6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane16_D_10
+    second: {fileID: 2100000, guid: 15d180c38f7ffe34e9fd957936f23532, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s6mobplane17_D_11
+    second: {fileID: 2100000, guid: 8ae9970409af1db448c778c577187609, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_ENV_s8Ring_Net_D.png
+    second: {fileID: 2100000, guid: fd07fc214effee04e88705273b8dd124, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_MOB_s11staff_D.png
+    second: {fileID: 2100000, guid: 28b1a957171adf6478a5136c3c63e083, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_T_MOB_s6manA_Skin_D.png
+    second: {fileID: 2100000, guid: a4843a4faed62fa4bbaa4183a9abb9cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_guideforanimatingtekkenarenacrowd
+    second: {fileID: 2100000, guid: 4e5c313587360cf47b61d912c36e3e2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_v400_s11Ad_RingSide_B_01_D (2).png
+    second: {fileID: 2100000, guid: bec46b62a01c0534eba0bce1470dbccf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITS_v400_s11Ad_RingSide_B_01_D (2).png.001
+    second: {fileID: 2100000, guid: 0711f2d0316c8294e88fc915bcb01882, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITSarenawrestlewip27.png
+    second: {fileID: 2100000, guid: 368d2c99bd8027e4d9966143e5c584eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WITSarenawrestlewip27.png.001
+    second: {fileID: 2100000, guid: 75b70f87a8107de43b567e3b4fdbb5e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WorldGridMaterial.001
+    second: {fileID: 2100000, guid: 77e7f5bcfe7f13544bb351b5123b467c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: east ringwall long advert
+    second: {fileID: 2100000, guid: ff11ea1e2c6ec524191aedad0c54808c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: east ringwall small advert
+    second: {fileID: 2100000, guid: 4c3dc8e7f671b704c96332191f3a85ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flames p2 material
+    second: {fileID: 2100000, guid: a20bb7bb1a586714fa5c915288b960ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: northeast ring machine advert
+    second: {fileID: 2100000, guid: c880cb547e48b8f458e00e4edf48bb08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: northeast ringwall long advert
+    second: {fileID: 2100000, guid: 2784ec0a7f12f474a9ab4235d027dcc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: northeast ringwall small advert
+    second: {fileID: 2100000, guid: 9c51153c612fa5e429bcba425db880bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: northwest ringwall long advert
+    second: {fileID: 2100000, guid: 50b5cda4cfa76a14ebb7136946b7feca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: northwest ringwall small advert
+    second: {fileID: 2100000, guid: 6ab74bd1c6fb007468a57b71163485f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: southeast ring machine advert
+    second: {fileID: 2100000, guid: 37eead52a4e84f24893d643ec18575ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: southeast ringwall long advert
+    second: {fileID: 2100000, guid: b74b7a2c2135d19488c45e8879e29a54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: southeast ringwall small advert
+    second: {fileID: 2100000, guid: 1b526a4022dbaa048bf6557d5c676d8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: southwest ringwall long advert
+    second: {fileID: 2100000, guid: 1adf4cef42e5b48439af63cd1347ce88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: southwest ringwall small advert
+    second: {fileID: 2100000, guid: 824b31c3b6cc4cf4393c227ad38c5133, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west ringwall long advert
+    second: {fileID: 2100000, guid: e15f3db7c778e92419fe2bd6a38878b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west ringwall small advert
+    second: {fileID: 2100000, guid: c3af4c4278c657e4aa477ecd316bdc6c, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

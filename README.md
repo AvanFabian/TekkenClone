@@ -3,7 +3,7 @@
 ## 📋 <a name="table">Table of Contents</a>
 
 1. ⚙️ [Tech Stack](#tech-stack)
-2. 🤸 [Quick Start](#quick-start)
+2. 🚀 [Quick Start](#quick-start)
 3. 🔗 [Pages](#pages)
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
@@ -28,7 +28,7 @@
 3. Add Project to Unity Hub
 4. Open the Unity Editor
 
-## <a name="pages">📄 Pages</a>
+## <a name="pages">🔗 Pages</a>
 
 | Main Arena                                                                 
 | ----------------------------------------------------------------------------- 

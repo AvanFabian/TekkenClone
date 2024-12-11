@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: ad6d335203f35c34d952e25411724272
+  productGUID: 9fe459d3f1547b445bfa4cadc9002090
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: TekkenClone
+  productName: TekkenClone-Progress5
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -838,14 +838,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: TekkenClone
+  metroPackageName: TekkenClone-Progress5
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: TekkenClone
+  metroApplicationDescription: TekkenClone-Progress5
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -915,10 +915,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 490628f3-b0d2-41e7-8a99-bdeb7aca5829
+  cloudProjectId: 48dc6398-7ea3-4ecc-b428-6a2d11af21f0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: TekkenClone
+  projectName: TekkenClone-Progress5
   organizationId: avanfabian
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

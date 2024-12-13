@@ -25,6 +25,17 @@ public class FightingController : MonoBehaviour
     public Transform[] opponents;
     private float lastAttackTime;
 
+    [Header("Ultimate Attack")]
+    public float ultimateMaxCharge = 100f; // Maximum charge required for ultimate
+    public float ultimateCharge = 0f;      // Current charge level
+    public float ultimateChargePerAttack = 20f; // Charge gained per normal attack
+    public float ultimateDamageMultiplier = 2f; // Multiplier for ultimate damage
+    public string[] ultimateAnimations = { "UltimateAttack1", "UltimateAttack2", "UltimateAttack3" }; // Ultimate attack animations
+    public float ultimateCooldown = 5f;     // Cooldown after using ultimate
+    private bool isUltimateReady = false;
+    private bool isUltimateOnCooldown = false;
+    public UltimateBar ultimateBar;
+
     [Header("Effects and Sound")]
     public ParticleSystem attack1Effect;
     public ParticleSystem attack2Effect;
@@ -66,6 +77,12 @@ public class FightingController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             PerformAttack(3);
+        }
+
+        // Handle ultimate attack
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PerformUltimateAttack();
         }
     }
 
@@ -120,6 +137,9 @@ public class FightingController : MonoBehaviour
 
             lastAttackTime = Time.time;
 
+            // Increase ultimate charge
+            IncreaseUltimateCharge();
+
             // Loop through each opponent
             foreach (Transform opponent in opponents)
             {
@@ -169,6 +189,111 @@ public class FightingController : MonoBehaviour
         }
 
         animator.Play("HitDamageAnimation");
+    }
+
+    // Skill untuk ultimate attack
+    void IncreaseUltimateCharge()
+    {
+        if (!isUltimateOnCooldown)
+        {
+            ultimateCharge += ultimateChargePerAttack;
+            ultimateCharge = Mathf.Clamp(ultimateCharge, 0, ultimateMaxCharge);
+
+            if (ultimateCharge >= ultimateMaxCharge)
+            {
+                isUltimateReady = true;
+                Debug.Log("Ultimate Ready!");
+                // Update UI to reflect ultimate readiness
+                ultimateBar.UltimateReady(ultimateMaxCharge);
+            }
+        }
+    }
+
+    void PerformUltimateAttack()
+    {
+        if (isUltimateReady && !isUltimateOnCooldown)
+        {
+            StartCoroutine(ExecuteUltimate());
+        }
+        else if (isUltimateOnCooldown)
+        {
+            Debug.Log("Ultimate is on cooldown.");
+        }
+        else
+        {
+            Debug.Log("Ultimate not ready yet.");
+        }
+    }
+
+    IEnumerator ExecuteUltimate()
+    {
+        isUltimateOnCooldown = true;
+        isUltimateReady = false;
+        ultimateCharge = 0f;
+
+        // Optionally, reset the UI ultimate charge bar
+        ultimateBar.ResetCharge(0);
+
+        Debug.Log("Executing Ultimate Attack!");
+
+        // Play ultimate animations sequentially
+        foreach (string anim in ultimateAnimations)
+        {
+            animator.Play(anim);
+
+            // Wait until the animation finishes before moving to the next
+            yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+        }
+
+        Debug.Log("Ultimate Attack finished!");
+
+        // Start cooldown
+        yield return StartCoroutine(StartUltimateCooldown());
+    }
+
+    public void TriggerUltimateDamage()
+    {
+        int ultimateDamage = attackDamages * (int)ultimateDamageMultiplier;
+
+        // Loop through each opponent to apply damage
+        foreach (Transform opponent in opponents)
+        {
+            if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
+            {
+                opponent.GetComponent<OpponentAI>().StartCoroutine(
+                    opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(ultimateDamage));
+            }
+        }
+
+        Debug.Log("Ultimate damage applied!");
+    }
+
+
+
+    IEnumerator StartUltimateCooldown()
+    {
+        Debug.Log("Ultimate is on cooldown.");
+        // Optionally, update UI to show cooldown timer
+
+        yield return new WaitForSeconds(ultimateCooldown);
+        isUltimateOnCooldown = false;
+        Debug.Log("Ultimate is ready again.");
+    }
+
+    // Optional: Regenerate ultimate over time
+    void RegenerateUltimate()
+    {
+        if (!isUltimateReady && !isUltimateOnCooldown)
+        {
+            ultimateCharge += Time.deltaTime * 10f; // Adjust regeneration rate
+            ultimateCharge = Mathf.Clamp(ultimateCharge, 0, ultimateMaxCharge);
+
+            if (ultimateCharge >= ultimateMaxCharge)
+            {
+                isUltimateReady = true;
+                Debug.Log("Ultimate Ready!");
+            }
+        }
     }
 
     void Die()

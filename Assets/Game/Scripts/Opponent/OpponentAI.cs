@@ -5,14 +5,14 @@ using UnityEngine;
 public class OpponentAI : MonoBehaviour
 {
     [Header("Opponent Movement")]
-    public float movementSpeed = 1f;
+    public float movementSpeed = 0f;
     public float rotationSpeed = 10f;
     public CharacterController characterController;
     public Animator animator;
 
     [Header("Opponent Fight")]
-    public float attackCooldown = 0.5f;
-    public int attackDamages = 5;
+    public float attackCooldown = 0f;
+    public int attackDamages = 0;
     public string[] attackAnimations =
     {
         "Attack1Animation",
@@ -54,11 +54,6 @@ public class OpponentAI : MonoBehaviour
 
     void Update()
     {
-        // if(attackCount == randomNumber)
-        // {
-        //     attackCount = 0;
-        //     createRandomNumber();
-        // }
         // initialize for loop yang mengambil semua elemen dari Array fightingController
         for (int i = 0; i < fightingController.Length; i++)
         {

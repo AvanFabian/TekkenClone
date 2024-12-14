@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
-    public Text scoreText;
-    public Text levelText;
+    public TextMeshProUGUI scoreText; // Use TextMeshProUGUI for TextMeshPro objects
+    public TextMeshProUGUI levelText;
 
     void Update()
     {
-        scoreText.text = "Score: " + GameManager.Instance.currentScore;
-        levelText.text = "Level: " + GameManager.Instance.currentLevel;
+        if (GameManager.Instance != null)
+        {
+            scoreText.text = "Score: " + GameManager.Instance.currentScore;
+            levelText.text = "Level: " + GameManager.Instance.currentLevel;
+        }
     }
 }
 

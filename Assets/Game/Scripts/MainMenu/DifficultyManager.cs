@@ -12,13 +12,13 @@ public class DifficultyManager : MonoBehaviour
 
     // Enemy parameters based on difficulty
     // EASY
-    public float easyAttackCooldown = 1.5f;
-    public int easyAttackDamage = 3;
+    public float easyAttackCooldown = 3f;
+    public int easyAttackDamage = 1;
     public float easyMovementSpeed = 1.0f;
     // MEDIUM
-    public float mediumAttackCooldown = 1.0f;
-    public int mediumAttackDamage = 5;
-    public float mediumMovementSpeed = 2.0f;
+    public float mediumAttackCooldown = 6.0f;
+    public int mediumAttackDamage = 1;
+    public float mediumMovementSpeed = 1.0f;
     // HARD
     public float hardAttackCooldown = 0.5f;
     public int hardAttackDamage = 8;
@@ -46,6 +46,7 @@ public class DifficultyManager : MonoBehaviour
                 currentDifficulty = Difficulty.Easy;
                 break;
             case "medium":
+                Debug.Log("Setting difficulty to medium");
                 currentDifficulty = Difficulty.Medium;
                 break;
             case "hard":

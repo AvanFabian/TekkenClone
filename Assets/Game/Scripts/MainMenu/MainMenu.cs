@@ -11,7 +11,6 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject ControlsMenu;
     public GameObject CreditsMenu;
-    public GameObject difficultyMenu;
 
     void Start()
     {
@@ -24,6 +23,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlayButtonClicked()
     {
+        mainMenu.SetActive(false);
+        selectCharacterAndStageMenu.SetActive(true);
+    }
+
+    public void NewGameButtonClicked()
+    {
+        GameManager.Instance.ResetProgress();
         mainMenu.SetActive(false);
         selectCharacterAndStageMenu.SetActive(true);
     }

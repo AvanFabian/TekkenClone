@@ -12,39 +12,58 @@ public class ResultManager : MonoBehaviour
     public FightingController[] fightingController; // Player Characters
     public OpponentAI[] opponentAI; // Opponent Characters
 
-    void Update(){
-        foreach(FightingController fightingController in fightingController){
-            if(fightingController.gameObject.activeSelf && fightingController.currentHealth <=0 )
+    private bool resultSet = false; // Flag to ensure result is set only once
+
+    void Update()
+    {
+        if (resultSet) return; // If result already set, skip further checks
+
+        // Check if all player characters are defeated
+        foreach (FightingController fc in fightingController)
+        {
+            if (fc.gameObject.activeSelf && fc.currentHealth <= 0)
             {
                 SetResult("YOU LOSE!");
                 return;
             }
         }
 
-        foreach(OpponentAI opponentAI in opponentAI){
-            if(opponentAI.gameObject.activeSelf && opponentAI.currentHealth <= 0)
+        // Check if all opponent characters are defeated
+        foreach (OpponentAI oa in opponentAI)
+        {
+            if (oa.gameObject.activeSelf && oa.currentHealth <= 0)
             {
                 SetResult("YOU WIN!");
                 return;
             }
         }
 
-         // Load Main Menu using M
+        // Load Main Menu using M
         if (Input.GetKeyDown(KeyCode.M))
         {
             LoadMainMenu();
         }
     }
-    void SetResult(string result){
+
+    void SetResult(string result)
+    {
+        if (resultSet) return; // Double-check to avoid multiple calls
+
+        resultSet = true; // Set the flag to true to prevent further execution
+
         // Add score based on current difficulty
         GameManager.Instance.AddScoreByDifficulty(DifficultyManager.Instance.currentDifficulty);
+        // Save progress
+        GameManager.Instance.SaveProgress();
+
         resultText.text = result;
         resultPanel.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // Pause the game
     }
 
-    public void LoadMainMenu(){
-        Time.timeScale = 1f;
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f; // Resume time
         SceneManager.LoadScene("MainMenu");
     }
 }

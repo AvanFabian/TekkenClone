@@ -9,8 +9,8 @@ public class ResultManager : MonoBehaviour
     public GameObject resultPanel;
     public Text resultText;
 
-    public FightingController[] fightingController;
-    public OpponentAI[] opponentAI;
+    public FightingController[] fightingController; // Player Characters
+    public OpponentAI[] opponentAI; // Opponent Characters
 
     void Update(){
         foreach(FightingController fightingController in fightingController){
@@ -36,6 +36,8 @@ public class ResultManager : MonoBehaviour
         }
     }
     void SetResult(string result){
+        // Add score based on current difficulty
+        GameManager.Instance.AddScoreByDifficulty(DifficultyManager.Instance.currentDifficulty);
         resultText.text = result;
         resultPanel.SetActive(true);
         Time.timeScale = 0f;

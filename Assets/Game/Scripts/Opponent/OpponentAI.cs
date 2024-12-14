@@ -47,6 +47,9 @@ public class OpponentAI : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.GiveFullHealth(currentHealth);
         createRandomNumber();
+
+        // Fetch difficulty settings from DifficultyManager
+        ApplyDifficultySettings();  
     }
 
     void Update()
@@ -95,6 +98,35 @@ public class OpponentAI : MonoBehaviour
                     animator.SetBool("Walking", true);
                 }
             }
+        }
+    }
+
+    void ApplyDifficultySettings()
+    {
+        if (DifficultyManager.Instance != null)
+        {
+            switch (DifficultyManager.Instance.currentDifficulty)
+            {
+                case DifficultyManager.Difficulty.Easy:
+                    attackCooldown = DifficultyManager.Instance.easyAttackCooldown;
+                    attackDamages = DifficultyManager.Instance.easyAttackDamage;
+                    movementSpeed = DifficultyManager.Instance.easyMovementSpeed;
+                    break;
+
+                case DifficultyManager.Difficulty.Medium:
+                    attackCooldown = DifficultyManager.Instance.mediumAttackCooldown;
+                    attackDamages = DifficultyManager.Instance.mediumAttackDamage;
+                    movementSpeed = DifficultyManager.Instance.mediumMovementSpeed;
+                    break;
+
+                case DifficultyManager.Difficulty.Hard:
+                    attackCooldown = DifficultyManager.Instance.hardAttackCooldown;
+                    attackDamages = DifficultyManager.Instance.hardAttackDamage;
+                    movementSpeed = DifficultyManager.Instance.hardMovementSpeed;
+                    break;
+            }
+
+            Debug.Log("Difficulty Applied: " + DifficultyManager.Instance.currentDifficulty);
         }
     }
 

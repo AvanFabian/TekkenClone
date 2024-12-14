@@ -28,10 +28,10 @@ public class FightingController : MonoBehaviour
     [Header("Ultimate Attack")]
     public float ultimateMaxCharge = 100f; // Maximum charge required for ultimate
     public float ultimateCharge = 0f;      // Current charge level
-    public float ultimateChargePerAttack = 20f; // Charge gained per normal attack
-    public float ultimateDamageMultiplier = 2f; // Multiplier for ultimate damage
+    public float ultimateChargePerAttack = 10f; // Charge gained per successful attack
+    public float ultimateDamageMultiplier = 2f; // Damage multiplier for ultimate attack
     public string[] ultimateAnimations = { "UltimateAttack1", "UltimateAttack2", "UltimateAttack3" }; // Ultimate attack animations
-    public float ultimateCooldown = 5f;     // Cooldown after using ultimate
+    public float ultimateCooldown;     // Cooldown after using ultimate
     private bool isUltimateReady = false;
     private bool isUltimateOnCooldown = false;
     public UltimateBar ultimateBar;
@@ -133,12 +133,11 @@ public class FightingController : MonoBehaviour
             animator.Play(attackAnimations[attackIndex]);
 
             int damage = attackDamages;
-            Debug.Log("Performed attack" + (attackIndex + 1) + " dealing " + damage + "damage");
+            Debug.Log("Performed attack " + (attackIndex + 1) + " dealing " + damage + " damage");
 
             lastAttackTime = Time.time;
 
-            // Increase ultimate charge
-            IncreaseUltimateCharge();
+            bool hitSuccessful = false; // Flag to check if any opponent was hit
 
             // Loop through each opponent
             foreach (Transform opponent in opponents)
@@ -146,13 +145,27 @@ public class FightingController : MonoBehaviour
                 // Check if the opponent is within the attack radius
                 if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
                 {
-                    opponent.GetComponent<OpponentAI>().StartCoroutine(opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(attackDamages));
+                    hitSuccessful = true;
+
+                    // Trigger opponent's damage animation
+                    opponent.GetComponent<OpponentAI>().StartCoroutine(
+                        opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(attackDamages)
+                    );
                 }
+            }
+
+            // Only charge the ultimate if at least one opponent was hit
+            if (hitSuccessful)
+            {
+                IncreaseUltimateCharge();
+            }
+            else
+            {
+                Debug.Log("Attack missed. No ultimate charge gained.");
             }
         }
         else
         {
-            // If the player tries to perform an attack too quickly, inform them
             Debug.Log("Cannot perform attack yet. Cooldown time remaining.");
         }
     }
@@ -196,8 +209,23 @@ public class FightingController : MonoBehaviour
     {
         if (!isUltimateOnCooldown)
         {
+            // Validate ultimateChargePerAttack
+            if (ultimateChargePerAttack <= 0)
+            {
+                Debug.LogWarning("Ultimate Charge Per Attack is not set properly!");
+                return;
+            }
+
             ultimateCharge += ultimateChargePerAttack;
+
+            // Clamp the ultimateCharge to ensure it doesn't exceed the max
             ultimateCharge = Mathf.Clamp(ultimateCharge, 0, ultimateMaxCharge);
+
+            // Normalize the charge value to fit the range [0, 1]
+            float normalizedCharge = ultimateCharge / ultimateMaxCharge;
+
+            // Update the Ultimate Bar UI with the normalized value
+            ultimateBar.SetCharge(normalizedCharge);
 
             if (ultimateCharge >= ultimateMaxCharge)
             {
@@ -208,6 +236,7 @@ public class FightingController : MonoBehaviour
             }
         }
     }
+
 
     void PerformUltimateAttack()
     {

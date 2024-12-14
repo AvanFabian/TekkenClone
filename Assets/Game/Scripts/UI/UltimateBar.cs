@@ -7,14 +7,19 @@ public class UltimateBar : MonoBehaviour
 {
     public Slider UltimateBarSlider;
 
-    public void UltimateReady(float readyness)
+    public void UltimateReady(float damage)
     {
-        UltimateBarSlider.maxValue = readyness;
-        UltimateBarSlider.value = readyness;
+        UltimateBarSlider.maxValue = damage;
+        UltimateBarSlider.value = damage;
     }
 
-    public void ResetCharge(float readyness)
+    public void SetCharge(float damage)
     {
-        UltimateBarSlider.value = readyness;
+        UltimateBarSlider.value = damage;
+    }
+
+    public void ResetCharge(float damage)
+    {
+        UltimateBarSlider.value = damage;
     }
 }

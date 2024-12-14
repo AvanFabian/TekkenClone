@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject ControlsMenu;
     public GameObject CreditsMenu;
+    public GameObject difficultyMenu;
 
     void Start()
     {
@@ -45,7 +46,7 @@ public class MainMenu : MonoBehaviour
         ControlsMenu.SetActive(true);
         optionsMenu.SetActive(false);
         
-
+ 
     }
 
     public void BackButtonClicked()
@@ -70,6 +71,10 @@ public class MainMenu : MonoBehaviour
     public void SelectStageClicked(string sceneName)
     {
         Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName);
+    }
+    public void SelectDifficultyClicked(string sceneName)
+    {
         SceneManager.LoadScene(sceneName);
     }
 }

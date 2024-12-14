@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     // Player progression
     public int currentLevel = 1; // Start at level 1
     public int currentScore = 0;
-    public int[] scoreToUnlockLevel = { 0, 100, 300, 600 }; // Example thresholds for levels
-    public bool[] levelUnlocked = { true, false, false, false }; // Level 1 unlocked by default
+    public int[] scoreToUnlockLevel = { 0, 100, 300 }; // Example thresholds for levels
+    public bool[] levelUnlocked = { true, false, false }; // Level 1 unlocked by default
 
     // Score points for difficulty
     public int easyScore = 50;

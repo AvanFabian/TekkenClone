@@ -30,7 +30,7 @@ public class FightingController : MonoBehaviour
     public float ultimateCharge = 0f;      // Current charge level
     public float ultimateChargePerAttack = 10f; // Charge gained per successful attack
     public float ultimateDamageMultiplier = 2f; // Damage multiplier for ultimate attack
-    public string[] ultimateAnimations = { "UltimateAttack1", "UltimateAttack2", "UltimateAttack3" }; // Ultimate attack animations
+    public string[] ultimateAnimations = { "UltimateAttack1", "UltimateAttack2", "UltimateAttack3", "UltimateAttack4", "UltimateAttack5", "UltimateAttack6" };
     public float ultimateCooldown;     // Cooldown after using ultimate
     private bool isUltimateReady = false;
     private bool isUltimateOnCooldown = false;
@@ -43,6 +43,10 @@ public class FightingController : MonoBehaviour
     public ParticleSystem attack4Effect;
 
     public AudioClip[] hitSounds;
+
+    [Header("Dodge Settings")]
+    public float dodgeCooldown = 1f;   // Cooldown duration in seconds
+    private float lastDodgeTime = -Mathf.Infinity; // Tracks the last time dodge was performed
 
     [Header("Health")]
     public int maxHealth = 100;
@@ -126,60 +130,69 @@ public class FightingController : MonoBehaviour
         characterController.Move(movement * movementSpeed * Time.deltaTime);
     }
 
-void PerformAttack(int attackIndex)
-{
-    if (Time.time - lastAttackTime > attackCooldown)
+    void PerformAttack(int attackIndex)
     {
-        animator.Play(attackAnimations[attackIndex]);
-
-        Debug.Log("Performed attack " + (attackIndex + 1) + " dealing " + attackDamages + " damage");
-
-        lastAttackTime = Time.time;
-
-        bool hitSuccessful = false; // Flag to check if any opponent was hit
-
-        // Loop through each opponent
-        foreach (Transform opponent in opponents)
+        if (Time.time - lastAttackTime > attackCooldown)
         {
-            if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
-            {
-                hitSuccessful = true;
+            animator.Play(attackAnimations[attackIndex]);
 
-                // Apply damage directly to the opponent
-                OpponentAI opponentAI = opponent.GetComponent<OpponentAI>();
-                if (opponentAI != null)
+            Debug.Log("Performed attack " + (attackIndex + 1) + " dealing " + attackDamages + " damage");
+
+            lastAttackTime = Time.time;
+
+            bool hitSuccessful = false; // Flag to check if any opponent was hit
+
+            // Loop through each opponent
+            foreach (Transform opponent in opponents)
+            {
+                if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
                 {
-                    opponentAI.TakeDamage(attackDamages); // Reduce health immediately
+                    hitSuccessful = true;
+
+                    // Apply damage directly to the opponent
+                    OpponentAI opponentAI = opponent.GetComponent<OpponentAI>();
+                    if (opponentAI != null)
+                    {
+                        opponentAI.TakeDamage(attackDamages); // Reduce health immediately
+                    }
                 }
             }
-        }
 
-        // Only charge the ultimate if at least one opponent was hit
-        if (hitSuccessful)
-        {
-            IncreaseUltimateCharge();
+            // Only charge the ultimate if at least one opponent was hit
+            if (hitSuccessful)
+            {
+                IncreaseUltimateCharge();
+            }
+            else
+            {
+                Debug.Log("Attack missed. No ultimate charge gained.");
+            }
         }
         else
         {
-            Debug.Log("Attack missed. No ultimate charge gained.");
+            Debug.Log("Cannot perform attack yet. Cooldown time remaining.");
         }
     }
-    else
-    {
-        Debug.Log("Cannot perform attack yet. Cooldown time remaining.");
-    }
-}
-
 
     void PerformDodgeFront()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            animator.Play("DodgeFrontAnimation");
+            if (Time.time - lastDodgeTime >= dodgeCooldown) // Check if cooldown has passed
+            {
+                lastDodgeTime = Time.time; // Update last dodge time
 
-            Vector3 dodgeDirection = transform.forward * dodgeDistance;
+                animator.Play("DodgeFrontAnimation");
 
-            characterController.Move(dodgeDirection);
+                Vector3 dodgeDirection = transform.forward * dodgeDistance;
+                characterController.Move(dodgeDirection);
+
+                Debug.Log("Player dodged!");
+            }
+            else
+            {
+                Debug.Log("Dodge on cooldown. Time remaining: " + (dodgeCooldown - (Time.time - lastDodgeTime)).ToString("F2") + " seconds");
+            }
         }
     }
 
@@ -261,44 +274,45 @@ void PerformAttack(int attackIndex)
         isUltimateReady = false;
         ultimateCharge = 0f;
 
-        // Optionally, reset the UI ultimate charge bar
+        // Reset UI ultimate charge bar
         ultimateBar.ResetCharge(0);
 
         Debug.Log("Executing Ultimate Attack!");
 
-        // Play ultimate animations sequentially
         foreach (string anim in ultimateAnimations)
         {
+            // Play the ultimate animation
             animator.Play(anim);
 
-            // Wait until the animation finishes before moving to the next
+            // Wait for the animation to finish
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
         }
 
         Debug.Log("Ultimate Attack finished!");
 
-        // Start cooldown
+        // Start cooldown timer
         yield return StartCoroutine(StartUltimateCooldown());
     }
 
-    // public void TriggerUltimateDamage()
-    // {
-    //     int ultimateDamage = attackDamages * (int)ultimateDamageMultiplier;
+    public void TriggerUltimateDamage()
+    {
+        int ultimateDamage = attackDamages * (int)ultimateDamageMultiplier;
 
-    //     // Loop through each opponent to apply damage
-    //     foreach (Transform opponent in opponents)
-    //     {
-    //         if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
-    //         {
-    //             opponent.GetComponent<OpponentAI>().StartCoroutine(
-    //                 opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(ultimateDamage));
-    //         }
-    //     }
+        foreach (Transform opponent in opponents)
+        {
+            if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
+            {
+                OpponentAI opponentAI = opponent.GetComponent<OpponentAI>();
+                if (opponentAI != null)
+                {
+                    opponentAI.TakeDamage(ultimateDamage); // Apply ultimate damage
+                    opponentAI.StunOpponent(3f); // Stun the opponent for 2 seconds
+                }
+            }
+        }
 
-    //     Debug.Log("Ultimate damage applied!");
-    // }
-
-
+        Debug.Log("Ultimate damage applied to all opponents!");
+    }
 
     IEnumerator StartUltimateCooldown()
     {

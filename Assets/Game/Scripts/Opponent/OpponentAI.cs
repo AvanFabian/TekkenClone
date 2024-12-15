@@ -43,6 +43,11 @@ public class OpponentAI : MonoBehaviour
     public ParticleSystem attack4Effect;
     public AudioClip[] hitSounds;
 
+    [Header("Stun Settings")]
+    public bool isStunned = false;       // Flag to check if the opponent is stunned
+    public float stunDuration = 2f;      // Duration of the stun effect
+    private float stunEndTime;           // Tracks when the stun ends
+
     private float lastAttackTime;
     private Transform player;
     private bool isTakingDamage;
@@ -83,8 +88,24 @@ public class OpponentAI : MonoBehaviour
 
     void Update()
     {
-        if (currentHealth <= 0) return;
+        if (currentHealth <= 0) return; // Skip all logic if the enemy is dead
 
+        // Check if stunned
+        if (isStunned)
+        {
+            if (Time.time >= stunEndTime)
+            {
+                isStunned = false; // Stun ends
+                animator.SetBool("Stunned", false);
+                Debug.Log("Opponent is no longer stunned.");
+            }
+            else
+            {
+                return; // Do nothing while stunned
+            }
+        }
+
+        // Regular AI behavior
         switch (currentState)
         {
             case OpponentState.Chase:
@@ -102,6 +123,21 @@ public class OpponentAI : MonoBehaviour
         }
 
         UpdateBehaviorBasedOnHealth();
+    }
+
+    public void StunOpponent(float duration)
+    {
+        if (!isStunned) // Prevent overriding existing stuns
+        {
+            isStunned = true;
+            stunEndTime = Time.time + duration;
+
+            // Play stun animation or effects
+            animator.SetBool("Stunned", true);
+            // animator.Play("StunAnimation");
+
+            Debug.Log("Opponent stunned for " + duration + " seconds!");
+        }
     }
 
     void ApplyDifficultySettings()
@@ -305,7 +341,6 @@ public class OpponentAI : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // Optional delay before playing animation
 
         // Play hit animation
-        animator.Play("HitDamageAnimation");
 
         // Optionally, play hit sound
         if (hitSounds.Length > 0)
@@ -313,6 +348,8 @@ public class OpponentAI : MonoBehaviour
             int randomIndex = Random.Range(0, hitSounds.Length);
             AudioSource.PlayClipAtPoint(hitSounds[randomIndex], transform.position);
         }
+
+        animator.Play("HitDamageAnimation");
     }
 
     void Die()

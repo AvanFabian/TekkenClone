@@ -126,49 +126,50 @@ public class FightingController : MonoBehaviour
         characterController.Move(movement * movementSpeed * Time.deltaTime);
     }
 
-    void PerformAttack(int attackIndex)
+void PerformAttack(int attackIndex)
+{
+    if (Time.time - lastAttackTime > attackCooldown)
     {
-        if (Time.time - lastAttackTime > attackCooldown)
+        animator.Play(attackAnimations[attackIndex]);
+
+        Debug.Log("Performed attack " + (attackIndex + 1) + " dealing " + attackDamages + " damage");
+
+        lastAttackTime = Time.time;
+
+        bool hitSuccessful = false; // Flag to check if any opponent was hit
+
+        // Loop through each opponent
+        foreach (Transform opponent in opponents)
         {
-            animator.Play(attackAnimations[attackIndex]);
-
-            int damage = attackDamages;
-            Debug.Log("Performed attack " + (attackIndex + 1) + " dealing " + damage + " damage");
-
-            lastAttackTime = Time.time;
-
-            bool hitSuccessful = false; // Flag to check if any opponent was hit
-
-            // Loop through each opponent
-            foreach (Transform opponent in opponents)
+            if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
             {
-                // Check if the opponent is within the attack radius
-                if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
-                {
-                    hitSuccessful = true;
+                hitSuccessful = true;
 
-                    // Trigger opponent's damage animation
-                    opponent.GetComponent<OpponentAI>().StartCoroutine(
-                        opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(attackDamages)
-                    );
+                // Apply damage directly to the opponent
+                OpponentAI opponentAI = opponent.GetComponent<OpponentAI>();
+                if (opponentAI != null)
+                {
+                    opponentAI.TakeDamage(attackDamages); // Reduce health immediately
                 }
             }
+        }
 
-            // Only charge the ultimate if at least one opponent was hit
-            if (hitSuccessful)
-            {
-                IncreaseUltimateCharge();
-            }
-            else
-            {
-                Debug.Log("Attack missed. No ultimate charge gained.");
-            }
+        // Only charge the ultimate if at least one opponent was hit
+        if (hitSuccessful)
+        {
+            IncreaseUltimateCharge();
         }
         else
         {
-            Debug.Log("Cannot perform attack yet. Cooldown time remaining.");
+            Debug.Log("Attack missed. No ultimate charge gained.");
         }
     }
+    else
+    {
+        Debug.Log("Cannot perform attack yet. Cooldown time remaining.");
+    }
+}
+
 
     void PerformDodgeFront()
     {
@@ -280,22 +281,22 @@ public class FightingController : MonoBehaviour
         yield return StartCoroutine(StartUltimateCooldown());
     }
 
-    public void TriggerUltimateDamage()
-    {
-        int ultimateDamage = attackDamages * (int)ultimateDamageMultiplier;
+    // public void TriggerUltimateDamage()
+    // {
+    //     int ultimateDamage = attackDamages * (int)ultimateDamageMultiplier;
 
-        // Loop through each opponent to apply damage
-        foreach (Transform opponent in opponents)
-        {
-            if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
-            {
-                opponent.GetComponent<OpponentAI>().StartCoroutine(
-                    opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(ultimateDamage));
-            }
-        }
+    //     // Loop through each opponent to apply damage
+    //     foreach (Transform opponent in opponents)
+    //     {
+    //         if (Vector3.Distance(transform.position, opponent.position) <= attackRadius)
+    //         {
+    //             opponent.GetComponent<OpponentAI>().StartCoroutine(
+    //                 opponent.GetComponent<OpponentAI>().PlayHitDamageAnimation(ultimateDamage));
+    //         }
+    //     }
 
-        Debug.Log("Ultimate damage applied!");
-    }
+    //     Debug.Log("Ultimate damage applied!");
+    // }
 
 
 

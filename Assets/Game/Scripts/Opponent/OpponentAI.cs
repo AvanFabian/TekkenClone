@@ -5,95 +5,103 @@ using UnityEngine;
 public class OpponentAI : MonoBehaviour
 {
     [Header("Opponent Movement")]
-    public float movementSpeed = 0f;
+    public float movementSpeed = 2f;
     public float rotationSpeed = 10f;
     public CharacterController characterController;
     public Animator animator;
 
     [Header("Opponent Fight")]
-    public float attackCooldown = 0f;
-    public int attackDamages = 0;
-    public string[] attackAnimations =
-    {
-        "Attack1Animation",
-        "Attack2Animation",
-        "Attack3Animation",
-        "Attack4Animation"
-    };
+    public float attackCooldown = 1f;
+    public int attackDamages = 2;
+    public string[] attackAnimations = { "Attack1Animation", "Attack2Animation", "Attack3Animation", "Attack4Animation" };
     public float dodgeDistance = 2f;
-    public int attackCount = 0;
-    public int randomNumber;
-    public float attackRadius = 2f;
-    public FightingController[] fightingController;
-    public Transform[] players;
-    public bool isTakingDamage;
-    private float lastAttackTime;
+    public float attackRadius = 2.0f;
 
-    [Header("Effects and Sound")]
-    public ParticleSystem attack1Effect;
-    public ParticleSystem attack2Effect;
-    public ParticleSystem attack3Effect;
-    public ParticleSystem attack4Effect;
+    [Header("Dodge Settings")]
+    public float dodgeCooldown = 5f;
+    private float lastDodgeTime;
 
-    public AudioClip[] hitSounds;
+    [Header("Special Attack")]
+    public float specialAttackCooldown = 10f;
+    private float lastSpecialAttackTime;
+
+    [Header("Retreat Settings")]
+    public float retreatDuration = 1.5f;
+    public float retreatSpeedMultiplier = 2.0f;
+    private float retreatStartTime;
+    private bool isRetreating = false;
 
     [Header("Health")]
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
 
+    [Header("Effects and Sounds")]
+    public ParticleSystem attack1Effect;
+    public ParticleSystem attack2Effect;
+    public ParticleSystem attack3Effect;
+    public ParticleSystem attack4Effect;
+    public AudioClip[] hitSounds;
+
+    private float lastAttackTime;
+    private Transform player;
+    private bool isTakingDamage;
+
+    private enum OpponentState { Idle, Chase, Attack, Dodge, Retreat }
+    private OpponentState currentState = OpponentState.Chase;
+
     void Awake()
     {
         currentHealth = maxHealth;
         healthBar.GiveFullHealth(currentHealth);
-        createRandomNumber();
 
-        // Fetch difficulty settings from DifficultyManager
-        ApplyDifficultySettings();  
+        StartCoroutine(FindActivePlayer());
+        ApplyDifficultySettings();
+    }
+
+    IEnumerator FindActivePlayer()
+    {
+        while (player == null)
+        {
+            foreach (Transform child in GameObject.Find("PlayerCharacters").transform)
+            {
+                if (child.gameObject.activeSelf && child.CompareTag("Player"))
+                {
+                    player = child;
+                    break;
+                }
+            }
+            if (player == null)
+            {
+                Debug.Log("Waiting for active player...");
+                yield return null;
+            }
+        }
+
+        Debug.Log("Active Player Found: " + player.name);
     }
 
     void Update()
     {
-        // initialize for loop yang mengambil semua elemen dari Array fightingController
-        for (int i = 0; i < fightingController.Length; i++)
+        if (currentHealth <= 0) return;
+
+        switch (currentState)
         {
-            if (players[i].gameObject.activeSelf && Vector3.Distance(transform.position, players[i].position) <= attackRadius)
-            {
-                animator.SetBool("Walking", false);
-
-                if (Time.time - lastAttackTime > attackCooldown)
-                {
-                    int randomAttackIndex = Random.Range(0, attackAnimations.Length);
-
-                    if (!isTakingDamage)
-                    {
-                        PerformAttack(randomAttackIndex);
-                    }
-                    // Play hit/damage animation on player
-                    fightingController[i].StartCoroutine(fightingController[i].PlayHitDamageAnimation(attackDamages));
-                }
-            }
-            else
-            {
-                // jika objek players/karakter aktif, maka...
-                if (players[i].gameObject.activeSelf)
-                {
-                    // maka bergerak menuju player
-                    Vector3 direction = (players[i].position - transform.position).normalized;
-                    characterController.Move(direction * movementSpeed * Time.deltaTime);
-
-                    // maka berotasi menuju player
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    transform.rotation = Quaternion.Slerp(
-                        transform.rotation,
-                        targetRotation,
-                        rotationSpeed * Time.deltaTime
-                    );
-                    // maka aktifkan animasi berjalan
-                    animator.SetBool("Walking", true);
-                }
-            }
+            case OpponentState.Chase:
+                ChasePlayer();
+                break;
+            case OpponentState.Attack:
+                PerformAttack();
+                break;
+            case OpponentState.Dodge:
+                PerformDodge();
+                break;
+            case OpponentState.Retreat:
+                Retreat();
+                break;
         }
+
+        UpdateBehaviorBasedOnHealth();
     }
 
     void ApplyDifficultySettings()
@@ -103,99 +111,213 @@ public class OpponentAI : MonoBehaviour
             switch (DifficultyManager.Instance.currentDifficulty)
             {
                 case DifficultyManager.Difficulty.Easy:
-                    attackCooldown = DifficultyManager.Instance.easyAttackCooldown;
-                    attackDamages = DifficultyManager.Instance.easyAttackDamage;
-                    movementSpeed = DifficultyManager.Instance.easyMovementSpeed;
+                    attackCooldown = 2f;
+                    attackDamages = 3;
+                    movementSpeed = 1.5f;
                     break;
-
                 case DifficultyManager.Difficulty.Medium:
-                    attackCooldown = DifficultyManager.Instance.mediumAttackCooldown;
-                    attackDamages = DifficultyManager.Instance.mediumAttackDamage;
-                    movementSpeed = DifficultyManager.Instance.mediumMovementSpeed;
+                    attackCooldown = 1.5f;
+                    attackDamages = 5;
+                    movementSpeed = 2.5f;
                     break;
-
                 case DifficultyManager.Difficulty.Hard:
-                    attackCooldown = DifficultyManager.Instance.hardAttackCooldown;
-                    attackDamages = DifficultyManager.Instance.hardAttackDamage;
-                    movementSpeed = DifficultyManager.Instance.hardMovementSpeed;
+                    attackCooldown = 1f;
+                    attackDamages = 8;
+                    movementSpeed = 3.5f;
                     break;
             }
-
-            Debug.Log("Difficulty Applied: " + DifficultyManager.Instance.currentDifficulty);
         }
     }
 
-    void PerformAttack(int attackIndex)
+    void ChasePlayer()
     {
-        animator.Play(attackAnimations[attackIndex]);
+        if (player == null) return;
 
-        int damage = attackDamages;
-        Debug.Log("Performed attack" + (attackIndex + 1) + " dealing " + damage + "damage");
+        float distance = Vector3.Distance(transform.position, player.position);
 
-        lastAttackTime = Time.time;
-    }
-
-    void PerformDodgeFront()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (distance <= attackRadius)
         {
-            animator.Play("DodgeFrontAnimation");
+            currentState = OpponentState.Attack;
+        }
+        else
+        {
+            Vector3 direction = (player.position - transform.position).normalized;
+            characterController.Move(direction * movementSpeed * Time.deltaTime);
 
-            Vector3 dodgeDirection = -transform.forward * dodgeDistance;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            characterController.SimpleMove(dodgeDirection);
+            animator.SetBool("Walking", true);
         }
     }
 
-    void createRandomNumber()
+    void PerformAttack()
     {
-        randomNumber = Random.Range(1, 5);
+        if (Time.time - lastAttackTime > attackCooldown)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distanceToPlayer <= attackRadius)
+            {
+                int attackIndex = Random.Range(0, attackAnimations.Length);
+                animator.Play(attackAnimations[attackIndex]);
+                TriggerAttackEffect(attackIndex);
+
+                Debug.Log("Opponent performed attack: " + attackAnimations[attackIndex]);
+
+                player.GetComponent<FightingController>().StartCoroutine(
+                    player.GetComponent<FightingController>().PlayHitDamageAnimation(attackDamages));
+
+                lastAttackTime = Time.time;
+            }
+        }
+
+        // Check if special attack can occur
+        if (Time.time - lastSpecialAttackTime > specialAttackCooldown)
+        {
+            PerformSpecialAttack();
+        }
     }
 
-    public IEnumerator PlayHitDamageAnimation(int takeDamage)
+    void TriggerAttackEffect(int attackIndex)
     {
-        yield return new WaitForSeconds(0.5f);
+        switch (attackIndex)
+        {
+            case 0:
+                if (attack1Effect != null) attack1Effect.Play();
+                break;
+            case 1:
+                if (attack2Effect != null) attack2Effect.Play();
+                break;
+            case 2:
+                if (attack3Effect != null) attack3Effect.Play();
+                break;
+            case 3:
+                if (attack4Effect != null) attack4Effect.Play();
+                break;
+        }
+    }
 
-        // Play random hit sound
-        if(hitSounds != null && hitSounds.Length > 0)
+    void PerformSpecialAttack()
+    {
+        animator.Play("SpecialAttackAnimation");
+        Debug.Log("Opponent performed a SPECIAL ATTACK!");
+
+        if (Vector3.Distance(transform.position, player.position) <= attackRadius)
+        {
+            player.GetComponent<FightingController>().StartCoroutine(
+                player.GetComponent<FightingController>().PlayHitDamageAnimation(attackDamages * 2));
+        }
+
+        lastSpecialAttackTime = Time.time;
+    }
+
+    void PerformDodge()
+    {
+        animator.Play("DodgeFrontAnimation");
+
+        Vector3 dodgeDirection = -transform.forward * dodgeDistance;
+        characterController.Move(dodgeDirection);
+
+        Debug.Log("Opponent dodged!");
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer <= attackRadius)
+        {
+            currentState = OpponentState.Attack;
+        }
+        else
+        {
+            currentState = OpponentState.Chase;
+        }
+    }
+
+    void Retreat()
+    {
+        if (Time.time - retreatStartTime < retreatDuration)
+        {
+            Vector3 retreatDirection = -transform.forward * movementSpeed * retreatSpeedMultiplier * Time.deltaTime;
+            characterController.Move(retreatDirection);
+
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            isRetreating = false;
+            animator.SetBool("Walking", false);
+            currentState = OpponentState.Chase;
+        }
+    }
+
+    void UpdateBehaviorBasedOnHealth()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (currentHealth <= maxHealth * 0.2f && !isRetreating)
+        {
+            StartRetreat();
+        }
+        else if (distanceToPlayer <= attackRadius)
+        {
+            currentState = OpponentState.Attack;
+        }
+        else if (Time.time - lastDodgeTime > dodgeCooldown)
+        {
+            if (Random.value < 0.1f)
+            {
+                currentState = OpponentState.Dodge;
+                lastDodgeTime = Time.time;
+            }
+        }
+        else
+        {
+            currentState = OpponentState.Chase;
+        }
+    }
+
+    void StartRetreat()
+    {
+        isRetreating = true;
+        retreatStartTime = Time.time;
+        currentState = OpponentState.Retreat;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        // Reduce health immediately
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+
+        Debug.Log("Opponent took " + damage + " damage. Remaining health: " + currentHealth);
+
+        // Play hit animation
+        StartCoroutine(PlayHitDamageAnimation());
+
+        // Check for death
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public IEnumerator PlayHitDamageAnimation()
+    {
+        yield return new WaitForSeconds(0.1f); // Optional delay before playing animation
+
+        // Play hit animation
+        animator.Play("HitDamageAnimation");
+
+        // Optionally, play hit sound
+        if (hitSounds.Length > 0)
         {
             int randomIndex = Random.Range(0, hitSounds.Length);
             AudioSource.PlayClipAtPoint(hitSounds[randomIndex], transform.position);
         }
-        // decrease health
-        currentHealth -= takeDamage;
-        healthBar.SetHealth(currentHealth);
-
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
-
-        animator.Play("HitDamageAnimation");
     }
 
     void Die()
     {
+        // animator.Play("DeathAnimation");
         Debug.Log("Opponent died.");
-    }
-
-    public void Attack1Effect()
-    {
-        attack1Effect.Play();
-    }
-
-    public void Attack2Effect()
-    {
-        attack2Effect.Play();
-    }
-
-    public void Attack3Effect()
-    {
-        attack3Effect.Play();
-    }
-
-    public void Attack4Effect()
-    {
-        attack4Effect.Play();
     }
 }

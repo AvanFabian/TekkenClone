@@ -3548,7 +3548,7 @@ GameObject:
   - component: {fileID: 1567972214}
   - component: {fileID: 1567972213}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4132,7 +4132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: CONTINUE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32908f9489a864d459427d645cdfebb1, type: 2}
   m_sharedMaterial: {fileID: -2401545769303000315, guid: 32908f9489a864d459427d645cdfebb1,
@@ -5210,7 +5210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.026245, y: -4.049835}
+  m_AnchoredPosition: {x: 3.026245, y: -4.0498657}
   m_SizeDelta: {x: -992.4525, y: -156.70004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3201366647836343079

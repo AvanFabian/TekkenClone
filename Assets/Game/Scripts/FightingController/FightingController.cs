@@ -84,7 +84,7 @@ public class FightingController : MonoBehaviour
         }
 
         // Handle ultimate attack
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             PerformUltimateAttack();
         }

@@ -1,12 +1,28 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonSoundController : MonoBehaviour
 {
+    public static ButtonSoundController Instance;
+
     [Header("Audio Clips")]
     public AudioClip hoverSound;
     public AudioClip clickSound;
 
     private AudioSource audioSource;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

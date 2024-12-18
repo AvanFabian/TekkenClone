@@ -406,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 1
   currentScore: 0
-  scoreToUnlockLevel: 00000000640000002c01000058020000
+  scoreToUnlockLevel: 00000000c80000002c01000058020000
   levelUnlocked: 01000000
   easyScore: 50
   mediumScore: 100
@@ -506,7 +506,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 208147974}
+  m_TargetGraphic: {fileID: 947614254}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -968,7 +968,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 03343269dc7e1e44da6c5ca835b5e40e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1402,7 +1402,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 863528433}
+  m_TargetGraphic: {fileID: 1883166177}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1824,7 +1824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &538717354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2615,7 +2615,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 863528433}
+  m_TargetGraphic: {fileID: 1821029603}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2790,20 +2790,20 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 863528433}
+  m_TargetGraphic: {fileID: 1924252316}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3643589692869788884}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: BackButtonClicked
-        m_Mode: 1
+        m_MethodName: SelectCharacterClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SelectCharacter
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 291365001}
@@ -3370,20 +3370,20 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 863528433}
+  m_TargetGraphic: {fileID: 223450611}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3643589692869788884}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: BackButtonClicked
-        m_Mode: 1
+        m_MethodName: SelectStageClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SelectStage
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 291365001}
@@ -3545,7 +3545,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 863528433}
+  m_TargetGraphic: {fileID: 813719978}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -5609,20 +5609,20 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 863528433}
+  m_TargetGraphic: {fileID: 378147967}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3643589692869788884}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: BackButtonClicked
-        m_Mode: 1
+        m_MethodName: SelectDifficultyClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SelectDifficulty
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 291365001}
@@ -5734,13 +5734,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDifficulty: 1
-  easyAttackCooldown: 6
+  easyAttackCooldown: 3.16
   easyAttackDamage: 1
   easyMovementSpeed: 1
-  mediumAttackCooldown: 5
+  mediumAttackCooldown: 2.16
   mediumAttackDamage: 2
   mediumMovementSpeed: 1
-  hardAttackCooldown: 4
+  hardAttackCooldown: 1.44
   hardAttackDamage: 3
   hardMovementSpeed: 1.5
 --- !u!4 &1945092892
@@ -6047,11 +6047,11 @@ GameObject:
   - component: {fileID: 2260603855603901158}
   m_Layer: 5
   m_Name: SelectCharacter&StageMenu
-  m_TagString: Untagged
+  m_TagString: SelectCharacter&StageMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3324828764288950823
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6184,11 +6184,11 @@ GameObject:
   - component: {fileID: 3777884036371365827}
   m_Layer: 5
   m_Name: MainMenu
-  m_TagString: Untagged
+  m_TagString: MainMenuGameObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4745158053863146670
 RectTransform:
   m_ObjectHideFlags: 0

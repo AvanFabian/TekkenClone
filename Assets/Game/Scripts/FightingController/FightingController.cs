@@ -66,25 +66,25 @@ public class FightingController : MonoBehaviour
         performMovement();
         PerformDodgeFront();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetButtonDown("Fire1PK"))
         {
             PerformAttack(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetButtonDown("Fire2PK"))
         {
             PerformAttack(1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetButtonDown("Fire3PK"))
         {
             PerformAttack(2);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetButtonDown("Fire4PK"))
         {
             PerformAttack(3);
         }
 
         // Handle ultimate attack
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Fire5PK"))
         {
             PerformUltimateAttack();
         }
@@ -176,7 +176,7 @@ public class FightingController : MonoBehaviour
 
     void PerformDodgeFront()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire6PK"))
         {
             if (Time.time - lastDodgeTime >= dodgeCooldown) // Check if cooldown has passed
             {

@@ -5734,14 +5734,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDifficulty: 1
-  easyAttackCooldown: 3.16
-  easyAttackDamage: 1
+  easyAttackCooldown: 2.5
+  easyAttackDamage: 2
   easyMovementSpeed: 1
-  mediumAttackCooldown: 2.16
-  mediumAttackDamage: 2
-  mediumMovementSpeed: 1
+  mediumAttackCooldown: 1.78
+  mediumAttackDamage: 3
+  mediumMovementSpeed: 1.25
   hardAttackCooldown: 1.44
-  hardAttackDamage: 3
+  hardAttackDamage: 5
   hardMovementSpeed: 1.5
 --- !u!4 &1945092892
 Transform:

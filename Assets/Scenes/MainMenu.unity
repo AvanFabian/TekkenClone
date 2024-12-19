@@ -2103,13 +2103,15 @@ MonoBehaviour:
 
     right 360 kick - button 4
 
+    Ultimate Skill - X
+
 
     pause game - esc
 
-    main menu - m
+    main
+    menu - m
 
-    quit
-    game - q'
+    quit game - q'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32908f9489a864d459427d645cdfebb1, type: 2}
   m_sharedMaterial: {fileID: -2401545769303000315, guid: 32908f9489a864d459427d645cdfebb1,
@@ -6051,7 +6053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3324828764288950823
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6268,7 +6270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &6168227859266215767
 MonoBehaviour:
   m_ObjectHideFlags: 0

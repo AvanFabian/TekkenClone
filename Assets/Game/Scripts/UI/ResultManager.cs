@@ -23,7 +23,7 @@ public class ResultManager : MonoBehaviour
         {
             if (fc.gameObject.activeSelf && fc.currentHealth <= 0)
             {
-                SetResult("YOU LOSE!");
+                SetResultLose("YOU LOSE!");
                 return;
             }
         }
@@ -33,7 +33,7 @@ public class ResultManager : MonoBehaviour
         {
             if (oa.gameObject.activeSelf && oa.currentHealth <= 0)
             {
-                SetResult("YOU WIN!");
+                SetResultWin("YOU WIN!");
                 return;
             }
         }
@@ -45,7 +45,7 @@ public class ResultManager : MonoBehaviour
         }
     }
 
-    void SetResult(string result)
+    void SetResultWin(string result)
     {
         if (resultSet) return; // Double-check to avoid multiple calls
 
@@ -53,6 +53,22 @@ public class ResultManager : MonoBehaviour
 
         // Add score based on current difficulty
         GameManager.Instance.AddScoreByDifficulty(DifficultyManager.Instance.currentDifficulty);
+        // Save progress
+        GameManager.Instance.SaveProgress();
+
+        resultText.text = result;
+        resultPanel.SetActive(true);
+        Time.timeScale = 0f; // Pause the game
+    }
+
+    void SetResultLose(string result)
+    {
+        if (resultSet) return; // Double-check to avoid multiple calls
+
+        resultSet = true; // Set the flag to true to prevent further execution
+
+        // Add score based on current difficulty
+        // GameManager.Instance.AddScoreByDifficulty(DifficultyManager.Instance.currentDifficulty);
         // Save progress
         GameManager.Instance.SaveProgress();
 
